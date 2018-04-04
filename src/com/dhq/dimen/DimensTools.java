@@ -35,7 +35,7 @@ public class DimensTools {
      * 输出dimen文件
      *
      * @param designWidth 设计图宽度
-     * @param outPrefix   demins文件尺寸前缀
+     * @param outPrefix   demins前缀
      * @param outPath     demins文件输出路径
      */
     public static void outputDimenFiles(String designWidth, String outPrefix, String outPath) {
@@ -81,12 +81,12 @@ public class DimensTools {
         StringBuilder sb = new StringBuilder("<resources>" + "\r\n");
         try {
 
-            sb.append("<dimen name=\"" + outPrefix + "_" + 0.5 + "\">" + 0.5 * scale + "dp</dimen>"
+            sb.append("<dimen name=\"" + outPrefix + "_" + 0.5 + "dp\">" + 0.5 * scale + "dp</dimen>"
                     + "\r\n");
 
             //生成的dp尺寸
             for (int i = 1; i <= designPx; i++) {
-                sb.append("<dimen name=\"" + outPrefix + "_" + i + "\">" + i * scale + "dp</dimen>"
+                sb.append("<dimen name=\"" + outPrefix + "_" + i + "dp\">" + i * scale + "dp</dimen>"
                         + "\r\n");
             }
 //            //生成的sp尺寸

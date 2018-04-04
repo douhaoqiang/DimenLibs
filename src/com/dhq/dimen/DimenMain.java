@@ -1,6 +1,7 @@
 package com.dhq.dimen;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
@@ -16,11 +17,10 @@ public class DimenMain {
 
 
     private static JTextField designWidth;//设计图尺寸
+    private static JTextArea realWidth;//设计图尺寸
     private static JTextField outPathText;//输出路径显示
     private static JButton outPathBtn;//输出路径选择按钮
     private static JButton jbuName;//输出按钮
-    private static JTextField outPrefix;//输出格式前缀
-    private static JLabel outText;//输出格式展示
 
     Container con = new Container();//
 
@@ -45,12 +45,10 @@ public class DimenMain {
 
         double ly = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
-        int leftMagin=10;//左边距
-        int topMagin=10;//上边距
-        int centerMagin=10;//控件垂直间距
-        int hight=30;//控件高度
-        int rowIndex=0;//行坐标
-        int rowY=0;//每一行的Y坐标
+        int leftMagin = 10;//左边距
+        int topMagin = 10;//上边距
+        int centerMagin = 10;//控件垂直间距
+        int rowY = topMagin;//每一行的Y坐标
 
         //实例化一个JFrame类的对象
         JFrame jf = new JFrame();
@@ -59,97 +57,86 @@ public class DimenMain {
         //设置窗体的大小属性
         jf.setSize(420, 250);
         //设置窗体的位置属性
-        jf.setLocation(new Point((int) (lx / 2) - 200, (int) (ly / 2)-200));// 设定窗口出现位置
-//        jf.setLocation(0, 0);
+        jf.setLocation(new Point((int) (lx / 2) - 200, (int) (ly / 2) - 200));// 设定窗口出现位置
         //设置窗体关闭时退出程序
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //设置禁止调整窗体的大小
         jf.setResizable(false);
 
-        //实例化一个布局类的对象
-//        FlowLayout con = new FlowLayout(FlowLayout.LEFT);
-        //设置窗体的布局方式为流式布局
-//        jf.setLayout(con);
         jf.setContentPane(con);
-        //设计尺寸
 
-        rowY=topMagin+rowIndex*(hight+centerMagin);
+
+        //设计尺寸
+        int designHight = 30;//控件高度
 
         JLabel designName = new JLabel("设计尺寸");
-        designName.setBounds(leftMagin,rowY,60,hight);
+        designName.setBounds(leftMagin, rowY, 60, designHight);
 
         designWidth = new JTextField();
-        designWidth.setBounds(70,rowY,180,hight);
+        designWidth.setBounds(70, rowY, 180, designHight);
 
         JLabel designUnit = new JLabel("PX");
-        designUnit.setBounds(260,rowY,30,hight);
+        designUnit.setBounds(260, rowY, 30, designHight);
 
         con.add(designName);
         con.add(designWidth);
         con.add(designUnit);
 
+
         //输出格式拼接
-        rowIndex++;
-        rowY=topMagin+rowIndex*(hight+centerMagin);
-        JLabel outFormat = new JLabel("输出格式");
-        outFormat.setBounds(leftMagin,rowY,60,hight);
-        outPrefix = new JTextField();//前缀
-        outPrefix.setBounds(70,rowY,180,hight);
-        JLabel outUnit = new JLabel("dp");
-        outUnit.setBounds(260,rowY,30,hight);
-        outText = new JLabel("例 width_56dp");
-        outText.setBounds(300,rowY,100,hight);
-        con.add(outFormat);
-        con.add(outPrefix);
-        con.add(outUnit);
-        con.add(outText);
+        int targetHight = 60;//控件高度
+        rowY = rowY + centerMagin+designHight;
+
+        JLabel outDesignName = new JLabel("真实尺寸");
+        outDesignName.setBounds(leftMagin, rowY, 60, targetHight);
+
+        realWidth = new JTextArea();
+        realWidth.setLineWrap(true);
+        realWidth.setWrapStyleWord(true);
+        realWidth.setBounds(70, rowY, 180, targetHight);
+        realWidth.setBorder(new LineBorder(new java.awt.Color(127,157,185), 1, false));
+
+        JLabel realUnit = new JLabel("dp");
+        realUnit.setBounds(260, rowY, 30, targetHight);
+
+        con.add(outDesignName);
+        con.add(realWidth);
+        con.add(realUnit);
 
         //输出路径
-        rowIndex++;
-        rowY=topMagin+rowIndex*(hight+centerMagin);
+        int outPathHight = 30;//控件高度
+        rowY = rowY + centerMagin+targetHight;
         JLabel outPathLab = new JLabel("输出路径");
-        outPathLab.setBounds(leftMagin,rowY,60,hight);
+        outPathLab.setBounds(leftMagin, rowY, 60, outPathHight);
         File directory = new File("");
         outPathText = new JTextField(directory.getAbsolutePath());// 文件的路径
-        outPathText.setBounds(70,rowY,200,hight);
+        outPathText.setBounds(70, rowY, 200, outPathHight);
         outPathBtn = new JButton("...");// 选择
-        outPathBtn.setBounds(280,rowY,30,hight);
+        outPathBtn.setBounds(280, rowY, 30, outPathHight);
         con.add(outPathLab);
         con.add(outPathText);
         con.add(outPathBtn);
 
-//        //实例化一个JCheckBox对象
-//        JCheckBox jchName = new JCheckBox("记住密码");
-//        //将jchName3对象添加到容器JFrame对象上
-//        con.add(jchName);
-//        //实例化一个JCheckBox对象
-//        JCheckBox jchName2 = new JCheckBox("自动登录");
-//        //将jchName3对象添加到容器JFrame对象上
-//        con.add(jchName2);
-
-
-        rowIndex++;
-        rowY=topMagin+rowIndex*(hight+centerMagin);
+        int outButtonHight = 30;//控件高度
+        rowY = rowY + centerMagin+targetHight;
         jbuName = new JButton("输     出");
-        jbuName.setBounds(110,rowY+20,200,hight);
+        jbuName.setBounds(110, rowY + 20, 200, outButtonHight);
         //将jButton对象添加到容器JFrame对象上
         con.add(jbuName);
 
         jf.setVisible(true);
 
 
-
-
     }
 
 
-    private static void setOnclickListener(){
+    private static void setOnclickListener() {
         jbuName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DimensTools.outputDimenFiles(designWidth.getText(),outPrefix.getText(),outPathText.getText());
-                JPanel jPanel=new JPanel();
-                JOptionPane.showMessageDialog(jPanel, "生成适配文件成功", "提示",JOptionPane.WARNING_MESSAGE);
+                DimensTools.outputDimenFiles(designWidth.getText(), designWidth.getText(), outPathText.getText());
+                JPanel jPanel = new JPanel();
+                JOptionPane.showMessageDialog(jPanel, "生成适配文件成功", "提示", JOptionPane.WARNING_MESSAGE);
             }
         });
         outPathBtn.addActionListener(new ActionListener() {
@@ -166,22 +153,6 @@ public class DimenMain {
             }
         });
 
-        outPrefix.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                outText.setText("例 " + outPrefix.getText() + "_50dp");
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                outText.setText("例 " + outPrefix.getText() + "_50dp");
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-
-            }
-        });
 
     }
 
