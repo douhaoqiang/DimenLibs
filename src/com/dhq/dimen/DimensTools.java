@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class DimensTools {
 
-    private static int designPx = 720;//UI设计的宽度尺寸
-    private static int defaultPx = 320;
+    public static int designPx = 720;//UI设计的宽度尺寸
+    public static int defaultPx = 320;
 
 //    private static DimenEntity dimenEntity;
 
-    private static String rootUrl = "/res/values";
+    public static String rootUrl = "/res/values";
 
-    private static String targetDp = "320,360,384,400,420,480,560,640,720";
+    public static String targetDp = "320,360,384,400,420,480,560,640,720";
 
     private static ArrayList<String> widths = new ArrayList<String>();
 

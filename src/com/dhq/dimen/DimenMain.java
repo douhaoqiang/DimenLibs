@@ -2,8 +2,6 @@ package com.dhq.dimen;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,25 +20,20 @@ public class DimenMain {
     private static JButton outPathBtn;//输出路径选择按钮
     private static JButton jbuName;//输出按钮
 
-    Container con = new Container();//
+    private static Container con = new Container();//
 
     private static JFileChooser chooser = new JFileChooser();// 文件选择器
 
     public static void main(String[] args) {
 
-//        new DimenMain();
-
-        // 实例化showFrameqq类的对象
-        DimenMain showqq = new DimenMain();
-        //调用qq界面的方法
-        showqq.initGUI();
+        initGUI();
 
         setOnclickListener();
 
     }
 
     //定义一个qq界面的方法
-    public void initGUI() {
+    public static void initGUI() {
         double lx = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 
         double ly = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
@@ -51,19 +44,19 @@ public class DimenMain {
         int rowY = topMagin;//每一行的Y坐标
 
         //实例化一个JFrame类的对象
-        JFrame jf = new JFrame();
+        JFrame dimensView = new JFrame();
         //设置窗体的标题属性
-        jf.setTitle("界面适配方案");
+        dimensView.setTitle("界面适配方案");
         //设置窗体的大小属性
-        jf.setSize(420, 250);
+        dimensView.setSize(420, 300);
         //设置窗体的位置属性
-        jf.setLocation(new Point((int) (lx / 2) - 200, (int) (ly / 2) - 200));// 设定窗口出现位置
+        dimensView.setLocation(new Point((int) (lx / 2) - 200, (int) (ly / 2) - 200));// 设定窗口出现位置
         //设置窗体关闭时退出程序
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        dimensView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //设置禁止调整窗体的大小
-        jf.setResizable(false);
+        dimensView.setResizable(false);
 
-        jf.setContentPane(con);
+        dimensView.setContentPane(con);
 
 
         //设计尺寸
@@ -85,7 +78,7 @@ public class DimenMain {
 
         //输出格式拼接
         int targetHight = 60;//控件高度
-        rowY = rowY + centerMagin+designHight;
+        rowY = rowY + centerMagin + designHight;
 
         JLabel outDesignName = new JLabel("真实尺寸");
         outDesignName.setBounds(leftMagin, rowY, 60, targetHight);
@@ -94,7 +87,9 @@ public class DimenMain {
         realWidth.setLineWrap(true);
         realWidth.setWrapStyleWord(true);
         realWidth.setBounds(70, rowY, 180, targetHight);
-        realWidth.setBorder(new LineBorder(new java.awt.Color(127,157,185), 1, false));
+        realWidth.setBorder(new LineBorder(new java.awt.Color(127, 157, 185), 1, false));
+        realWidth.setText(DimensTools.targetDp);
+
 
         JLabel realUnit = new JLabel("dp");
         realUnit.setBounds(260, rowY, 30, targetHight);
@@ -105,7 +100,7 @@ public class DimenMain {
 
         //输出路径
         int outPathHight = 30;//控件高度
-        rowY = rowY + centerMagin+targetHight;
+        rowY = rowY + centerMagin + targetHight;
         JLabel outPathLab = new JLabel("输出路径");
         outPathLab.setBounds(leftMagin, rowY, 60, outPathHight);
         File directory = new File("");
@@ -118,13 +113,13 @@ public class DimenMain {
         con.add(outPathBtn);
 
         int outButtonHight = 30;//控件高度
-        rowY = rowY + centerMagin+targetHight;
+        rowY = rowY + centerMagin + targetHight;
         jbuName = new JButton("输     出");
         jbuName.setBounds(110, rowY + 20, 200, outButtonHight);
         //将jButton对象添加到容器JFrame对象上
         con.add(jbuName);
 
-        jf.setVisible(true);
+        dimensView.setVisible(true);
 
 
     }
