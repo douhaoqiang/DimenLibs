@@ -16,8 +16,6 @@ public class DimensTools {
     public static int designPx = 720;//UI设计的宽度尺寸
     public static int defaultPx = 320;
 
-//    private static DimenEntity dimenEntity;
-
     public static String rootUrl = "/res/values";
 
     public static String targetDp = "320,360,384,400,420,480,560,640,720";
@@ -25,8 +23,6 @@ public class DimensTools {
     private static ArrayList<String> widths = new ArrayList<String>();
 
     public static void main(String[] args) {
-
-//        outputDimenFiles();
 
     }
 
@@ -56,7 +52,7 @@ public class DimensTools {
         for (int i = 0; i < widths.size(); i++) {
             int width_new = Integer.parseInt(widths.get(i));
 
-            String st = convertStreamToString(width_new, realWidth);
+            String st = convertStreamToString(width_new);
             String newFilePath = getDimenUrl(outPath, width_new);
 
             writeFile(newFilePath, st);
@@ -70,7 +66,7 @@ public class DimensTools {
      * @param width 输出尺寸
      * @return
      */
-    public static String convertStreamToString(float width, String realWidth) {
+    public static String convertStreamToString(float width) {
 
         //默认的dimen是320dp的
         if (width < 1) {
