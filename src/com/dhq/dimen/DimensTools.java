@@ -35,10 +35,10 @@ public class DimensTools {
      * 输出dimen文件
      *
      * @param designWidth 设计图宽度
-     * @param outPrefix   demins前缀
+     * @param realWidth   设备真实宽度（dp）
      * @param outPath     demins文件输出路径
      */
-    public static void outputDimenFiles(String designWidth, String outPrefix, String outPath) {
+    public static void outputDimenFiles(String designWidth, String realWidth, String outPath) {
         //获取UI设计图的值
         try {
             designPx = Integer.parseInt(designWidth);
@@ -50,13 +50,13 @@ public class DimensTools {
         //获取将要转换的宽度值
         widths.add("0");//0 为默认尺寸
 
-        List<String> strings = Arrays.asList(targetDp.split(","));
+        List<String> strings = Arrays.asList(realWidth.split(","));
         widths.addAll(strings);
 
         for (int i = 0; i < widths.size(); i++) {
             int width_new = Integer.parseInt(widths.get(i));
 
-            String st = convertStreamToString(width_new, outPrefix);
+            String st = convertStreamToString(width_new, realWidth);
             String newFilePath = getDimenUrl(outPath, width_new);
 
             writeFile(newFilePath, st);
@@ -70,7 +70,7 @@ public class DimensTools {
      * @param width 输出尺寸
      * @return
      */
-    public static String convertStreamToString(float width, String outPrefix) {
+    public static String convertStreamToString(float width, String realWidth) {
 
         //默认的dimen是320dp的
         if (width < 1) {
@@ -81,12 +81,12 @@ public class DimensTools {
         StringBuilder sb = new StringBuilder("<resources>" + "\r\n");
         try {
 
-            sb.append("<dimen name=\"" + outPrefix + "_" + 0.5 + "dp\">" + 0.5 * scale + "dp</dimen>"
+            sb.append("<dimen name=\"" + width + "_" + 0.5 + "dp\">" + 0.5 * scale + "dp</dimen>"
                     + "\r\n");
 
             //生成的dp尺寸
             for (int i = 1; i <= designPx; i++) {
-                sb.append("<dimen name=\"" + outPrefix + "_" + i + "dp\">" + i * scale + "dp</dimen>"
+                sb.append("<dimen name=\"" + width + "_" + i + "dp\">" + i * scale + "dp</dimen>"
                         + "\r\n");
             }
 //            //生成的sp尺寸

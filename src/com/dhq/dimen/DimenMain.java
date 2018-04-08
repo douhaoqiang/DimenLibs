@@ -129,7 +129,7 @@ public class DimenMain {
         jbuName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DimensTools.outputDimenFiles(designWidth.getText(), designWidth.getText(), outPathText.getText());
+                DimensTools.outputDimenFiles(designWidth.getText(), realWidth.getText(), outPathText.getText());
                 JPanel jPanel = new JPanel();
                 JOptionPane.showMessageDialog(jPanel, "生成适配文件成功", "提示", JOptionPane.WARNING_MESSAGE);
             }
