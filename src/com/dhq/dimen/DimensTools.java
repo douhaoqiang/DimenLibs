@@ -14,7 +14,7 @@ import java.util.List;
 public class DimensTools {
 
     public static int designPx = 720;//UI设计的宽度尺寸
-    public static int defaultPx = 320;
+    public static int defaultDp = 320;
 
     public static String rootUrl = "/res/values";
 //384 392 400 410 411 480 533 592 600 640 662 720 768 800 811 820 960 961 1024 1280 1365
@@ -70,7 +70,7 @@ public class DimensTools {
 
         //默认的dimen是320dp的
         if (width < 1) {
-            width = defaultPx;
+            width = defaultDp;
         }
 
         float scale = width / designPx;//计算缩放的倍数（输出尺寸/设计尺寸）
