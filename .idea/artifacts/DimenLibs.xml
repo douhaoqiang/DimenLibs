@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="DimenLibs">
-    <output-path>$PROJECT_DIR$/out/artifacts/DimenLibs</output-path>
+    <output-path>$USER_HOME$/Desktop/release</output-path>
     <root id="archive" name="DimenLibs.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />

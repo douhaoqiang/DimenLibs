@@ -18,7 +18,7 @@ public class DimensTools {
 
     public static String rootUrl = "/res/values";
 //384 392 400 410 411 480 533 592 600 640 662 720 768 800 811 820 960 961 1024 1280 1365
-    public static String targetDp = "320,360,384,400,420,480,560,640,720,768,800";
+    public static String targetDp = "320,360,384,400,411,420,432,480,540,560,600,640,720,768,800";
 
     private static ArrayList<String> widths = new ArrayList<String>();
 
@@ -77,7 +77,7 @@ public class DimensTools {
         StringBuilder sb = new StringBuilder("<resources>" + "\r\n");
         try {
 
-            sb.append("<dimen name=\"dp" + designPx + "_" + 0.5 + "\">" + 0.5 * scale + "dp</dimen>"
+            sb.append("<dimen name=\"dp" + designPx + "_0_5" + "\">" + 0.5 * scale + "dp</dimen>"
                     + "\r\n");
 
             //生成的dp尺寸
